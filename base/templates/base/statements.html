@@ -1,0 +1,10 @@
+{% extends 'main.html' %} <br />
+
+{% block content %}
+<h1>Statements template</h1>
+
+{% for statement in statements %}
+<p>{{statement.name}}</p>
+<a href="{{ statement.file.url }}" target="_blank"> Download file</a>
+
+{% endfor %} {% endblock content %}
