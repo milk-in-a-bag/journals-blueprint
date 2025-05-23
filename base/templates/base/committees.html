@@ -1,0 +1,10 @@
+{% extends 'main.html' %} <br />
+
+{% block content %}
+<h1>Committees template</h1>
+
+{% for committee in committees %}
+<h4>{{ committee.name }}</h4>
+<a href="{% url 'committee_detail' committee.id %}">View details</a>
+{% endfor %} <br />
+{% endblock %}

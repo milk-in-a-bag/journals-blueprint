@@ -1,0 +1,28 @@
+{% extends 'main.html' %} <br />
+
+{% block content %}
+<h1>Commitee details template</h1>
+<h3>{{ committee.name }}</h3>
+<p>{{ committee.mandate }}</p>
+<h4>Statements:</h4>
+
+<table id="myTable" class="display">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Statement</th>
+      <th>Date uploaded</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for statement in statements %}
+    <tr>
+      <td></td>
+      <td><a href="{{ statement.file.url }}">{{ statement.name }}</a></td>
+      <td>{{ statement.uploaded_at|date:"d-m-y" }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

@@ -1,12 +1,38 @@
 <!DOCTYPE html>
+
+{% load static %}
+
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'styles/main.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/2.3.1/css/dataTables.dataTables.css"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <script src="{% static 'scripts/jquery-3.7.1.js' %}"></script>
+    <script src="{% static 'scripts/main.js' %}" defer></script>
+    <script src="https://cdn.datatables.net/2.3.1/js/dataTables.js"></script>
     <title>Blueprint</title>
   </head>
   <body>
-    {% include 'navbar.html' %} <br />
+    <div class="navbar">
+      <div class="left">
+        <a href="/">LOGO HERE</a>
+      </div>
+      <div class="right">
+        <a href="{% url 'committees' %}">Committees</a>
+        <a href="{% url 'statements' %}">Statements</a>
+      </div>
+    </div>
+
     {% block content %} {% endblock %}
   </body>
 </html>
