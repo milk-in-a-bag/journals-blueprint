@@ -17,6 +17,7 @@
       <th>Statement</th>
       <th>Committee</th>
       <th>Date uploaded</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -26,6 +27,9 @@
       <td><a href="{{ statement.file.url }}">{{ statement.name }}</a></td>
       <td>{{ statement.committee }}</td>
       <td>{{ statement.uploaded_at|date:"d-m-y" }}</td>
+      {% if user.is_superuser %}
+      <td><button>Delete</button></td>
+      {% endif %}
     </tr>
     {% endfor %}
   </tbody>

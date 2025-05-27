@@ -1,14 +1,18 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
 from . models import *
 
 # Create your views here.
 
+@login_required
 def home(request):
     return render(request, 'base/home.html')
 
+@login_required
 def users(request):
     return render(request, 'base/users.html')
 
+@login_required
 def statements(request):
     all_statements = Statement.objects.all().order_by('-uploaded_at')
     all_committees = Committee.objects.all()
@@ -31,11 +35,13 @@ def statements(request):
         }
     return render(request, 'base/statements.html', context)
 
+@login_required
 def committees(request):
     all_committees = Committee.objects.all()
     context = {'committees' : all_committees}
     return render(request, 'base/committees.html', context)
 
+@login_required
 def committee_detail(request, id):
     committee = get_object_or_404(Committee, id=id)
     statements = committee.statements.all()
