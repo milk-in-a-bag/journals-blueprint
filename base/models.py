@@ -7,6 +7,13 @@ def clean_filename(filename):
     name = name.replace('_', ' ').replace('-', ' ').title()
     return name
 
+class Directorate(models.Model):
+    name = models.CharField(max_length=200)
+    mandate = models.TextField(null=True, blank=True)
+
+    def __str__(self):
+        return self.name
+
 class Committee(models.Model):
     name = models.CharField(max_length=200)
     mandate = models.TextField(null=True, blank=True)

@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from . models import *
+from accounts.models import *
 
 # Create your views here.
 
@@ -10,7 +11,9 @@ def home(request):
 
 @login_required
 def users(request):
-    return render(request, 'base/users.html')
+    all_users = MemberProfile.objects.all()
+    context = {'users' : all_users}
+    return render(request, 'base/users.html', context)
 
 @login_required
 def statements(request):

@@ -2,4 +2,25 @@
 
 {% block content %}
 <h1>Users template</h1>
+
+<table id="myTable" class="display">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Name</th>
+      <th>Committee</th>
+      <th>Contact</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for user in users %}
+    <tr>
+      <td></td>
+      <td>{{ user.user.username }}</td>
+      <td>{{ user.user.directorate }}</td>
+      <td>{{ user.phone_number }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 {% endblock %}

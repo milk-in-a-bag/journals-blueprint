@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from .models import *
 
 # Create your views here.
 
@@ -58,3 +60,30 @@ def signup_view(request):
             return redirect('signup')
 
     return render(request, 'accounts/signup.html')
+
+@login_required
+def complete_profile(request):
+    directorates = Directorate.objects.all()
+    profile = request.user.memberprofile
+    
+    context = {
+        'directorates' : directorates
+    }
+
+    if request.method == 'POST':
+        fname = request.POST.get('fname')
+        lname = request.POST.get('lname')
+        contact = request.POST.get('contact')
+        directorate_id = request.POST.get('directorate')
+
+        request.user.first_name = fname
+        request.user.last_name = lname
+        request.user.save()
+
+        profile.phone_number = contact
+        profile.directorate_id = directorate_id
+        profile.save()
+
+        return redirect('home')
+
+    return render(request, 'accounts/complete_profile.html', context)
