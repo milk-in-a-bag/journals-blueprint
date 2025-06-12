@@ -24,6 +24,7 @@
     {% block head %} {% endblock %}
   </head>
   <body>
+    {% if user.is_authenticated %}
     <div class="navbar">
       <div class="left">
         <a href="/">LOGO HERE</a>
@@ -31,12 +32,21 @@
       <div class="right">
         <a href="{% url 'committees' %}">Committees</a>
         <a href="{% url 'statements' %}">Statements</a>
-        {% if user.is_authenticated %}
-        <a href="{% url 'logout' %}">Logout</a>
-        {% endif %}
+
+        <div class="profile-wrapper">
+          <div class="profile">
+            <p>{{ user.username|first|upper }}</p>
+          </div>
+          <div class="menu">
+            <a href="{% url 'complete-profile' %}" class="menu-item"
+              >Complete profile</a
+            >
+            <a href="{% url 'logout' %}" class="menu-item">Logout</a>
+          </div>
+        </div>
       </div>
     </div>
-
+    {% endif %} <br />
     {% if messages %}
     <ul class="messages">
       {% for message in messages %}

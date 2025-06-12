@@ -1,4 +1,21 @@
 const statementsTable = document.querySelector("#myTable");
+const wrapper = document.querySelector(".profile-wrapper");
+const menu = document.querySelector(".menu");
+
+if (wrapper && menu) {
+  // Toggle menu visibility on profile wrapper click
+  wrapper.addEventListener("click", function (event) {
+    event.stopPropagation(); // Prevent the document click listener from immediately closing it
+    menu.style.display = menu.style.display === "block" ? "none" : "block";
+  });
+
+  // Close the menu if clicked outside
+  document.addEventListener("click", function (event) {
+    if (!wrapper.contains(event.target)) {
+      menu.style.display = "none";
+    }
+  });
+}
 
 if (statementsTable) {
   new DataTable(statementsTable, {

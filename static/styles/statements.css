@@ -9,6 +9,14 @@
   background-color: #fff;
 }
 
+.delform {
+  display: none;
+}
+
+.delform button {
+  cursor: pointer;
+}
+
 .closeBtn {
   cursor: pointer;
 }

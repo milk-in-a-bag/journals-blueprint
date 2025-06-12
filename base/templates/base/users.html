@@ -8,7 +8,7 @@
     <tr>
       <th>#</th>
       <th>Name</th>
-      <th>Committee</th>
+      <th>Directorate</th>
       <th>Contact</th>
     </tr>
   </thead>
@@ -16,8 +16,8 @@
     {% for user in users %}
     <tr>
       <td></td>
-      <td>{{ user.user.username }}</td>
-      <td>{{ user.user.directorate }}</td>
+      <td>{{ user.user.first_name }} {{ user.user.last_name }}</td>
+      <td>{{ user.directorate }}</td>
       <td>{{ user.phone_number }}</td>
     </tr>
     {% endfor %}

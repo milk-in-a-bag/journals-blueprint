@@ -11,6 +11,80 @@
   padding: 10px;
 }
 
-.right a {
-  margin-left: 10px;
+.right {
+  gap: 20px;
+  display: flex;
+  align-items: center;
+}
+
+.profile-wrapper {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  /* Optional: Add some padding to the wrapper itself to make the hover area larger */
+  /* padding-bottom: 5px; /* Adds space below the profile for menu to hover */
+}
+
+.profile {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  border: 1px solid #000;
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  cursor: pointer;
+  font-weight: bold; /* Make the initial stand out */
+}
+
+.menu {
+  display: none;
+  position: absolute;
+  right: 0; /* Align to the right edge of the profile wrapper */
+
+  /* ----- CRITICAL CHANGE HERE ----- */
+  /* Adjust 'top' to be slightly above or exactly at 100% to remove the gap */
+  top: calc(
+    100% + 11px
+  ); /* Position it slightly below the bottom of .profile-wrapper */
+  /*
+       If `profile` has a fixed height (e.g., 30px), and `navbar` also has padding,
+       you can calculate `top` more precisely based on the height of your profile icon
+       and any padding/margins around it.
+       For example, if .profile is 30px high, and you want 5px gap:
+       top: 35px; // this would place it 5px below the profile icon assuming no other elements in wrapper
+    */
+  /* The 60px you had earlier was likely a fixed value that didn't adapt to the wrapper's height */
+
+  width: max-content;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  min-width: 150px;
+  z-index: 10;
+  border-radius: 5px;
+  padding: 5px;
+  /* Removed margin-top: 5px; as the 'top' calculation handles the gap */
+}
+
+.menu-item {
+  display: block;
+  margin: 0;
+  padding: 8px 10px;
+  border-bottom: 1px solid #f3f3f3;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  text-decoration: none;
+}
+
+.menu a:last-child {
+  border-bottom: none;
+}
+
+.menu-item:hover {
+  background-color: #f0f0f0;
+  border-radius: 3px;
 }

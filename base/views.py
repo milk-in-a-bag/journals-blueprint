@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.http import HttpResponseForbidden
 from django.contrib.auth.decorators import login_required
 from . models import *
 from accounts.models import *
@@ -21,21 +22,36 @@ def statements(request):
     all_committees = Committee.objects.all()
 
     if request.method == 'POST':
-        file = request.FILES.get('file')
-        committee_id = request.POST.get('committee')
-        file_committee = Committee.objects.get(id=committee_id)
+        action = request.POST.get("action")
 
-        Statement.objects.create(
-            file = file,
-            committee = file_committee
-        )
+        if action == "add":
+            if not request.user.is_superuser:
+                return HttpResponseForbidden("You are not authorized to delete statements.")
+            file = request.FILES.get('file')
+            committee_id = request.POST.get('committee')
+            file_committee = get_object_or_404(Committee, id=committee_id)
 
-        return redirect('statements')
+            Statement.objects.create(
+                file=file,
+                committee=file_committee
+            )
 
+            return redirect('statements')
+        
+        elif action == "delete":
+            if not request.user.is_superuser:
+                return HttpResponseForbidden("You are not authorized to delete statements.")
+            
+            statement_id = request.POST.get("statement_id")
+            if statement_id:
+                Statement.objects.filter(id=statement_id).delete()
+            return redirect("statements")
+
+        
     context = {
-        'statements' : all_statements,
-        'committees' : all_committees
-        }
+        'statements': all_statements,
+        'committees': all_committees
+    }
     return render(request, 'base/statements.html', context)
 
 @login_required
