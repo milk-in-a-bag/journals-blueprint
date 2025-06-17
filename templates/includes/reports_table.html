@@ -13,10 +13,12 @@
       <td><a href="{{ doc.file.url }}">{{ doc.name }}</a></td>
       <td>{{ doc.uploaded_at|date:"d-m-Y" }}</td>
     </tr>
-    {% empty %}
+    {% if empty %}
     <tr>
       <td colspan="3">No documents available.</td>
     </tr>
+    {% endif %}
+    <br />
     {% endfor %}
   </tbody>
 </table>
