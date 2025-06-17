@@ -28,7 +28,7 @@ if (statementsTable) {
     order: [[3, "desc"]],
     columnDefs: [
       {
-        targets: 0, // First column (numbering)
+        targets: [0, 4], // First column (numbering)
         searchable: false,
         orderable: false,
       },

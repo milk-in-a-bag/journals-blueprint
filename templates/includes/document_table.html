@@ -1,0 +1,56 @@
+<table class="document-table display" id="statements-table">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Title</th>
+      <th>Date Uploaded</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for doc in documents %}
+    <tr>
+      <td>{{ forloop.counter }}</td>
+      <td><a href="{{ doc.file.url }}">{{ doc.name }}</a></td>
+      <td>{{ doc.uploaded_at|date:"d-m-Y" }}</td>
+    </tr>
+    {% empty %}
+    <tr>
+      <td colspan="3">No documents available.</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<script>
+  const statementsTable = document.querySelector("#statements-table");
+
+  if (statementsTable) {
+    new DataTable(statementsTable, {
+      paging: true,
+      searching: true,
+      ordering: true,
+      info: true,
+      responsive: true,
+      pageLength: 10,
+      order: [[2, "desc"]],
+      columnDefs: [
+        {
+          targets: 0, // First column (numbering)
+          searchable: false,
+          orderable: false,
+        },
+      ],
+      drawCallback: function (settings) {
+        const api = this.api();
+        const pageInfo = api.page.info();
+
+        api
+          .column(0, { page: "current" }) // target column 0 on current page
+          .nodes()
+          .each(function (cell, i) {
+            cell.innerHTML = pageInfo.start + i + 1;
+          });
+      },
+    });
+  }
+</script>

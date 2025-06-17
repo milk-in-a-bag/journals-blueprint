@@ -1,0 +1,68 @@
+.content-container {
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  max-width: 1000px;
+  margin: 2rem auto;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.committee-header {
+  margin-bottom: 1.5rem;
+}
+
+.mandate {
+  color: #555;
+  margin: 0.5rem 0;
+}
+
+.leaders {
+  margin-top: 1rem;
+  font-size: 0.95rem;
+}
+
+.tabs {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.tab-link {
+  padding: 8px 16px;
+  border: none;
+  background: #f0f0f0;
+  cursor: pointer;
+  font-weight: 500;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+}
+
+.tab-link.active {
+  background-color: #4a90e2;
+  color: white;
+}
+
+.tab-content {
+  display: none;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+.document-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.document-table th,
+.document-table td {
+  padding: 12px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.document-table th {
+  background-color: #f5f5f5;
+}

@@ -1,9 +1,6 @@
 {% extends 'main.html' %} <br />
 
-{% block content %}
-<h1>Home template</h1>
-
-{% if user.is_authenticated %}
-<h3>Hello {{ user.username }}</h3>
+{% block content %} {% if user.is_authenticated %}
+<h2>Hello {{ user.username }}</h2>
 {% endif %} <br />
 {% endblock content %}

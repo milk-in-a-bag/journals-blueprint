@@ -1,0 +1,45 @@
+/* Committees page layout */
+.committees-container {
+  max-width: 1000px;
+  margin: 2rem auto;
+  padding: 1rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* Committee card styling */
+.committee-card {
+  background-color: #ffffff;
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+}
+
+.committee-card:hover {
+  transform: translateY(-2px);
+}
+
+/* Committee name */
+.committee-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.75rem;
+  color: #222;
+}
+
+/* View link styling */
+.view-link {
+  display: inline-block;
+  padding: 0.4rem 0.75rem;
+  font-size: 0.9rem;
+  color: #fff;
+  background-color: #4a90e2;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.view-link:hover {
+  background-color: #3578d3;
+}

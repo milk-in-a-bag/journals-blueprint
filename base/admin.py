@@ -6,3 +6,4 @@ from .models import *
 admin.site.register(Committee)
 admin.site.register(Statement)
 admin.site.register(Directorate)
+admin.site.register(Report)

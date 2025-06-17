@@ -87,3 +87,14 @@ def complete_profile(request):
         return redirect('home')
 
     return render(request, 'accounts/complete_profile.html', context)
+
+def view_profile(request):
+
+    profile = request.user.memberprofile
+
+    context = {
+        'user': request.user,
+        'profile': profile,
+    }
+
+    return render(request, 'accounts/view_profile.html', context)

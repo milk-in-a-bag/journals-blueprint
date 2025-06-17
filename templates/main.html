@@ -33,14 +33,28 @@
         <a href="{% url 'committees' %}">Committees</a>
         <a href="{% url 'statements' %}">Statements</a>
 
+        {% if user.is_superuser %}
+
+        <a href="{% url 'users' %}">Users</a>
+
+        {% endif %}
+
         <div class="profile-wrapper">
           <div class="profile">
             <p>{{ user.username|first|upper }}</p>
           </div>
+          {% if incomplete_profile %}
+          <span class="profile-dot"></span>
+          {% endif %}
           <div class="menu">
+            {% if incomplete_profile %}
             <a href="{% url 'complete-profile' %}" class="menu-item"
-              >Complete profile</a
-            >
+              >Complete profile
+              <span class="menu-dot"></span>
+            </a>
+            {% else %}
+            <a href="{% url 'view-profile' %}" class="menu-item">My Profile</a>
+            {% endif %}
             <a href="{% url 'logout' %}" class="menu-item">Logout</a>
           </div>
         </div>
@@ -54,6 +68,7 @@
       {% endfor %}
     </ul>
     {% endif %} <br />
-    {% block content %} {% endblock %}
+
+    <div class="main-body">{% block content %} {% endblock %}</div>
   </body>
 </html>

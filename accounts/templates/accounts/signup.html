@@ -1,21 +1,33 @@
 {% extends 'main.html' %} <br />
+{% load static %} <br />
+{% block head %}
+<link rel="stylesheet" href="{% static 'styles/signup.css' %}" />
+{% endblock %} <br />
 {% block content %}
-<h1>Register template</h1>
 
-<form action="" method="POST">
+<form action="" method="POST" class="signup-form">
   {% csrf_token %}
 
   <h3>Register</h3>
+
   <label for="username">Username:</label>
   <input type="text" id="username" name="username" />
+
   <label for="email">Email:</label>
   <input type="email" id="email" name="email" />
+
   <label for="password">Password:</label>
-  <input type="password" , id="password" , name="password" />
+  <input type="password" id="password" name="password" />
+
   <label for="rpassword">Repeat password:</label>
-  <input type="password" , id="rpassword" , name="rpassword" />
+  <input type="password" id="rpassword" name="rpassword" />
+
   <button type="submit">Register</button>
 
-  <p>Already have an account? <a href="{% url 'login' %}">Login here</a></p>
+  <p class="login-text">
+    Already have an account?
+    <a href="{% url 'login' %}">Login here</a>
+  </p>
 </form>
+
 {% endblock %}

@@ -1,5 +1,10 @@
 {% extends 'main.html' %} <br />
 
+{% block head %}
+<link rel="stylesheet" href="/static/styles/users.css" />
+
+{% endblock %} <br />
+
 {% block content %}
 <h1>Users template</h1>
 
@@ -9,6 +14,7 @@
       <th>#</th>
       <th>Name</th>
       <th>Directorate</th>
+      <th>Email</th>
       <th>Contact</th>
     </tr>
   </thead>
@@ -18,6 +24,7 @@
       <td></td>
       <td>{{ user.user.first_name }} {{ user.user.last_name }}</td>
       <td>{{ user.directorate }}</td>
+      <td>{{ user.user.email }}</td>
       <td>{{ user.phone_number }}</td>
     </tr>
     {% endfor %}

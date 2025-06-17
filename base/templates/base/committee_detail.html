@@ -1,28 +1,36 @@
 {% extends 'main.html' %} <br />
-
+{% load static %} <br />
+{% block head %}
+<link rel="stylesheet" href="{% static 'styles/committee_detail.css' %}" />
+<script src="/static/scripts/commitee_details.js" defer></script>
+{% endblock %} <br />
 {% block content %}
-<h1>Commitee details template</h1>
-<h3>{{ committee.name }}</h3>
-<p>{{ committee.mandate }}</p>
-<h4>Statements:</h4>
 
-<table id="myTable" class="display">
-  <thead>
-    <tr>
-      <th>#</th>
-      <th>Statement</th>
-      <th>Date uploaded</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for statement in statements %}
-    <tr>
-      <td></td>
-      <td><a href="{{ statement.file.url }}">{{ statement.name }}</a></td>
-      <td>{{ statement.uploaded_at|date:"d-m-y" }}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
+<div class="content-container">
+  <div class="committee-header">
+    <h2>{{ committee.name }}</h2>
+    <p class="mandate">{{ committee.mandate }}</p>
+    <div class="leaders">
+      <p><strong>Chairperson:</strong> {{ committee.chair }}</p>
+      <p><strong>Vice Chairperson:</strong> {{ committee.vice }}</p>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab-link active" data-tab="statements">Statements</button>
+    <button class="tab-link" data-tab="reports">Reports</button>
+    <button class="tab-link" data-tab="memos">Memos</button>
+  </div>
+
+  <div id="statements" class="tab-content active">
+    {% include "includes/document_table.html" with documents=statements %}
+  </div>
+  <div id="reports" class="tab-content">
+    {% include "includes/reports_table.html" with documents=reports %}
+  </div>
+  <div id="memos" class="tab-content">
+    {% include "includes/document_table.html" with documents=memos %}
+  </div>
+</div>
 
 {% endblock %}

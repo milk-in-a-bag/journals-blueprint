@@ -1,10 +1,17 @@
 {% extends 'main.html' %} <br />
-
+{% load static %} <br />
+{% block head %}
+<link rel="stylesheet" href="{% static 'styles/committees.css' %}" />
+{% endblock %} <br />
 {% block content %}
-<h1>Committees template</h1>
-
-{% for committee in committees %}
-<h4>{{ committee.name }}</h4>
-<a href="{% url 'committee_detail' committee.id %}">View details</a>
-{% endfor %} <br />
+<div class="committees-container">
+  {% for committee in committees %}
+  <div class="committee-card">
+    <h3>{{ committee.name }}</h3>
+    <a href="{% url 'committee_detail' committee.id %}" class="view-link"
+      >View details</a
+    >
+  </div>
+  {% endfor %}
+</div>
 {% endblock %}

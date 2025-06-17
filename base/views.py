@@ -12,6 +12,9 @@ def home(request):
 
 @login_required
 def users(request):
+    if not request.user.is_staff:
+        return HttpResponseForbidden("You are not authorized to view this page.")
+    
     all_users = MemberProfile.objects.all()
     context = {'users' : all_users}
     return render(request, 'base/users.html', context)
@@ -64,9 +67,11 @@ def committees(request):
 def committee_detail(request, id):
     committee = get_object_or_404(Committee, id=id)
     statements = committee.statements.all()
+    reports = committee.reports.all()
 
     context = {
         'committee': committee,
         'statements': statements,
+        'reports': reports,
     }
     return render(request, 'base/committee_detail.html', context)

@@ -1,90 +1,160 @@
+/* Global reset & font */
 * {
   font-family: "Inter", sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
+body {
+  background-color: #f5f7fa;
+  color: #333;
+}
+
+/* Navbar styles */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.1),
-    0px 1px 2px 0px rgba(0, 0, 0, 0.06);
-  padding: 10px;
+  background-color: #ffffff;
+  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1), 0px 1px 2px rgba(0, 0, 0, 0.06);
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  margin: 0 0.5rem;
+  transition: color 0.3s ease;
+}
+
+.navbar a:hover {
+  color: #4a90e2;
+}
+
+.navbar .left a {
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 
 .right {
-  gap: 20px;
   display: flex;
   align-items: center;
+  gap: 20px;
 }
 
+/* Profile icon */
 .profile-wrapper {
   position: relative;
   display: inline-block;
   cursor: pointer;
-  /* Optional: Add some padding to the wrapper itself to make the hover area larger */
-  /* padding-bottom: 5px; /* Adds space below the profile for menu to hover */
 }
 
 .profile {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0;
-  padding: 0;
   border: 1px solid #000;
   border-radius: 50%;
-  height: 30px;
-  width: 30px;
+  height: 36px;
+  width: 36px;
   cursor: pointer;
-  font-weight: bold; /* Make the initial stand out */
+  font-weight: bold;
+  background-color: #4a90e2;
+  color: #fff;
 }
 
+/* Dropdown menu */
 .menu {
   display: none;
   position: absolute;
-  right: 0; /* Align to the right edge of the profile wrapper */
-
-  /* ----- CRITICAL CHANGE HERE ----- */
-  /* Adjust 'top' to be slightly above or exactly at 100% to remove the gap */
-  top: calc(
-    100% + 11px
-  ); /* Position it slightly below the bottom of .profile-wrapper */
-  /*
-       If `profile` has a fixed height (e.g., 30px), and `navbar` also has padding,
-       you can calculate `top` more precisely based on the height of your profile icon
-       and any padding/margins around it.
-       For example, if .profile is 30px high, and you want 5px gap:
-       top: 35px; // this would place it 5px below the profile icon assuming no other elements in wrapper
-    */
-  /* The 60px you had earlier was likely a fixed value that didn't adapt to the wrapper's height */
-
+  top: calc(100% + 10px);
+  right: 0;
   width: max-content;
   background-color: #fff;
   border: 1px solid #ddd;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  min-width: 150px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  min-width: 160px;
   z-index: 10;
-  border-radius: 5px;
-  padding: 5px;
-  /* Removed margin-top: 5px; as the 'top' calculation handles the gap */
+  border-radius: 8px;
+  padding: 0.25rem 0;
+  overflow: hidden;
 }
 
 .menu-item {
   display: block;
-  margin: 0;
-  padding: 8px 10px;
-  border-bottom: 1px solid #f3f3f3;
+  padding: 10px 16px;
   color: #333;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
   text-decoration: none;
+  transition: background-color 0.2s ease;
+  font-size: 0.95rem;
+}
+
+.menu-item:hover {
+  background-color: #f0f0f0;
+}
+
+.menu a {
+  border-bottom: 1px solid #f0f0f0;
 }
 
 .menu a:last-child {
   border-bottom: none;
 }
 
-.menu-item:hover {
-  background-color: #f0f0f0;
-  border-radius: 3px;
+/* Notification dots */
+.profile-dot {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 10px;
+  height: 10px;
+  background: red;
+  border-radius: 50%;
+  border: 2px solid white;
+}
+
+.menu-dot {
+  display: inline-block;
+  position: relative;
+  bottom: 7px;
+  margin-left: 8px;
+  width: 8px;
+  height: 8px;
+  background: red;
+  border-radius: 50%;
+}
+
+/* Flash messages */
+.messages {
+  list-style: none;
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1rem 1.5rem;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  font-size: 0.95rem;
+}
+
+.messages li {
+  margin-bottom: 0.5rem;
+}
+
+/* Main content block container (optional) */
+.content-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
+}
+
+.main-body {
+  padding: 0 2rem;
 }
