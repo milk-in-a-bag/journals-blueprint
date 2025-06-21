@@ -26,7 +26,11 @@ SECRET_KEY = 'django-insecure-v^voeva5djhqs&%6-9*_w!xawk@@1y_25$eg%&qj5h(+00^=p-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    'journals-blueprint.onrender.com', 
+]
 
 
 # Application definition
