@@ -1,4 +1,6 @@
-{% extends 'main.html' %} {% block content %}
+{% extends 'main.html' %} <br />
+
+{% block content %}
 <div class="dashboard-container">
   <!-- Hello card -->
   <div class="card welcome-card">
@@ -32,6 +34,7 @@
 
     <div class="tab-content" id="reports">
       {% include "includes/document_list.html" with documents=recent_reports %}
+      <br />
       <div class="view-all">
         <a href="#">View all reports →</a>
       </div>
@@ -39,6 +42,7 @@
 
     <div class="tab-content" id="memos">
       {% include "includes/document_list.html" with documents=recent_memos %}
+      <br />
       <div class="view-all">
         <a href="#">View all memos →</a>
       </div>
