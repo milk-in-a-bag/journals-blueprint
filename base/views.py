@@ -8,7 +8,14 @@ from accounts.models import *
 
 @login_required
 def home(request):
-    return render(request, 'base/home.html')
+    recent_statements = Statement.objects.order_by('-uploaded_at')[:5]
+    context = {
+        "recent_statements": Statement.objects.order_by('-uploaded_at')[:5],
+        "recent_reports": Report.objects.order_by('-uploaded_at')[:5],
+        #"recent_memos": Memo.objects.order_by('-uploaded_at')[:5],
+        }
+
+    return render(request, 'base/home.html', context)
 
 @login_required
 def users(request):

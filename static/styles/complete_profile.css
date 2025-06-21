@@ -1,0 +1,61 @@
+.profile-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+}
+
+.section-title {
+  font-size: 1.6rem;
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.profile-form .form-group {
+  margin-bottom: 1rem;
+}
+
+.profile-form label {
+  display: block;
+  font-weight: 500;
+  margin-bottom: 0.4rem;
+  color: #555;
+  font-size: 0.95rem;
+}
+
+.profile-form input,
+.profile-form select {
+  width: 100%;
+  padding: 0.6rem;
+  font-size: 0.95rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #f9f9f9;
+  transition: border 0.3s ease;
+}
+
+.profile-form input:focus,
+.profile-form select:focus {
+  border-color: #4a90e2;
+  outline: none;
+}
+
+.profile-form button {
+  width: 100%;
+  margin-top: 1rem;
+  padding: 0.8rem;
+  font-size: 1rem;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.profile-form button:hover {
+  background-color: #3b78c3;
+}

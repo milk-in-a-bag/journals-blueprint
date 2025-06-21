@@ -6,76 +6,77 @@
 {% endblock %} <br />
 
 {% block content %}
-<h3>Statements template</h3>
+<div class="content-container">
+  <h3>Statements template</h3>
 
-{% if user.is_superuser %}
-<button class="new">Add new statement</button>
-{% endif %}
+  {% if user.is_superuser %}
+  <button class="new">Add new statement</button>
+  {% endif %}
 
-<table id="myTable" class="display">
-  <thead>
-    <tr>
-      <th>#</th>
-      <th>Statement</th>
-      <th>Committee</th>
-      <th>Date uploaded</th>
-      {% if user.is_superuser %}
-      <th></th>
-      {% endif %}
-    </tr>
-  </thead>
-  <tbody>
-    {% for statement in statements %}
-    <tr>
-      <td></td>
-      <td><a href="{{ statement.file.url }}">{{ statement.name }}</a></td>
-      <td>{{ statement.committee }}</td>
-      <td>{{ statement.uploaded_at|date:"d-m-y" }}</td>
-      {% if user.is_superuser %}
-      <td>
-        <button class="del-btn" data-id="{{ statement.id }}">Delete</button>
-      </td>
-      {% endif %}
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
-
-<div class="modal-overlay" id="modal">
-  <form method="POST" enctype="multipart/form-data" class="newform form">
-    {% csrf_token %}
-
-    <h5 class="closeBtn">X</h5>
-    <h3>New statement</h3>
-    <input type="hidden" name="action" value="add" />
-    <input
-      type="file"
-      id="file"
-      name="file"
-      accept="application/pdf"
-      required
-    />
-    <br />
-    <label for="committee">Committee:</label>
-    <select name="committee" id="committee">
-      {% for committee in committees %}
-      <option value="{{ committee.id }}">{{ committee.name }}</option>
+  <table id="myTable" class="display">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Statement</th>
+        <th>Committee</th>
+        <th>Date uploaded</th>
+        {% if user.is_superuser %}
+        <th></th>
+        {% endif %}
+      </tr>
+    </thead>
+    <tbody>
+      {% for statement in statements %}
+      <tr>
+        <td></td>
+        <td><a href="{{ statement.file.url }}">{{ statement.name }}</a></td>
+        <td>{{ statement.committee }}</td>
+        <td>{{ statement.uploaded_at|date:"d-m-y" }}</td>
+        {% if user.is_superuser %}
+        <td>
+          <button class="del-btn" data-id="{{ statement.id }}">Delete</button>
+        </td>
+        {% endif %}
+      </tr>
       {% endfor %}
-    </select>
-    <br />
-    <button type="submit">Upload</button>
-  </form>
+    </tbody>
+  </table>
 
-  <form method="POST" class="delform">
-    {% csrf_token %}
+  <div class="modal-overlay" id="modal">
+    <form method="POST" enctype="multipart/form-data" class="newform form">
+      {% csrf_token %}
 
-    <h3>Delete Statement</h3>
-    <input type="hidden" name="action" value="delete" />
-    <input type="hidden" name="statement_id" id="delete-id" />
-    <p>Confirm you want to delete the statement?</p>
-    <button type="submit">Yes</button>
-    <button type="button" class="no-btn">No</button>
-  </form>
+      <h5 class="closeBtn">X</h5>
+      <h3>New statement</h3>
+      <input type="hidden" name="action" value="add" />
+      <input
+        type="file"
+        id="file"
+        name="file"
+        accept="application/pdf"
+        required
+      />
+      <br />
+      <label for="committee">Committee:</label>
+      <select name="committee" id="committee">
+        {% for committee in committees %}
+        <option value="{{ committee.id }}">{{ committee.name }}</option>
+        {% endfor %}
+      </select>
+      <br />
+      <button type="submit">Upload</button>
+    </form>
 
+    <form method="POST" class="delform">
+      {% csrf_token %}
+
+      <h3>Delete Statement</h3>
+      <input type="hidden" name="action" value="delete" />
+      <input type="hidden" name="statement_id" id="delete-id" />
+      <p>Confirm you want to delete the statement?</p>
+      <button type="submit">Yes</button>
+      <button type="button" class="no-btn">No</button>
+    </form>
+  </div>
   {% endblock content %}
 </div>

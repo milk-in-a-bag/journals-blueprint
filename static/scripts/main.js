@@ -28,7 +28,7 @@ if (statementsTable) {
     order: [[3, "desc"]],
     columnDefs: [
       {
-        targets: [0, 4], // First column (numbering)
+        targets: [0], // First column (numbering)
         searchable: false,
         orderable: false,
       },
@@ -46,3 +46,22 @@ if (statementsTable) {
     },
   });
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  const tabLinks = document.querySelectorAll(".tab-link");
+  const tabContents = document.querySelectorAll(".tab-content");
+
+  tabLinks.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const target = btn.dataset.tab;
+
+      tabLinks.forEach((b) => b.classList.remove("active"));
+      btn.classList.add("active");
+
+      tabContents.forEach((content) => {
+        content.classList.remove("active");
+        if (content.id === target) content.classList.add("active");
+      });
+    });
+  });
+});

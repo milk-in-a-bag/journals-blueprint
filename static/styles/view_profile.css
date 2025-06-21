@@ -1,0 +1,29 @@
+.profile-view-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
+}
+
+.section-title {
+  font-size: 1.6rem;
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.profile-details p {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  color: #333;
+  line-height: 1.6;
+}
+
+.profile-details span {
+  font-weight: 600;
+  color: #444;
+  display: inline-block;
+  min-width: 140px;
+}

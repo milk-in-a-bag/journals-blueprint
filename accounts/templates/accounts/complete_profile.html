@@ -1,23 +1,41 @@
 {% extends 'main.html' %} <br />
 
-{% block content %}
-<h1>Complete profile template</h1>
+{% load static %} <br />
+{% block head %}
+<link rel="stylesheet" href="{% static 'styles/complete_profile.css' %}" />
+{% endblock %} <br />
 
-<form action="" method="POST">
-  {% csrf_token %}
-  <h3>Profile</h3>
-  <label for="fname">First Name:</label>
-  <input type="text" id="fname" name="fname" />
-  <label for="lname">Last Name:</label>
-  <input type="text" id="lname" name="lname" />
-  <label for="contact">Contact:</label>
-  <input type="text" id="contact" name="contact" />
-  <label for="directorate">Directorate:</label>
-  <select name="directorate" id="directorate">
-    {% for directorate in directorates %}
-    <option value="{{ directorate.id }}">{{ directorate.name }}</option>
-    {% endfor %}
-  </select>
-  <button type="submit">Submit</button>
-</form>
+{% block content %}
+<div class="profile-container">
+  <h2 class="section-title">Complete Your Profile</h2>
+
+  <form action="" method="POST" class="profile-form">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="fname">First Name:</label>
+      <input type="text" id="fname" name="fname" required />
+    </div>
+
+    <div class="form-group">
+      <label for="lname">Last Name:</label>
+      <input type="text" id="lname" name="lname" required />
+    </div>
+
+    <div class="form-group">
+      <label for="contact">Contact:</label>
+      <input type="text" id="contact" name="contact" required />
+    </div>
+
+    <div class="form-group">
+      <label for="directorate">Directorate:</label>
+      <select name="directorate" id="directorate" required>
+        {% for directorate in directorates %}
+        <option value="{{ directorate.id }}">{{ directorate.name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <button type="submit">Submit</button>
+  </form>
+</div>
 {% endblock %}

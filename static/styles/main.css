@@ -16,8 +16,8 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #ffffff;
-  box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1), 0px 1px 2px rgba(0, 0, 0, 0.06);
+  background-color: #fff;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
   padding: 1rem 2rem;
   position: sticky;
   top: 0;
@@ -58,14 +58,13 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid #000;
+  background-color: #4a90e2;
+  color: #fff;
+  font-weight: bold;
   border-radius: 50%;
   height: 36px;
   width: 36px;
-  cursor: pointer;
-  font-weight: bold;
-  background-color: #4a90e2;
-  color: #fff;
+  border: 1px solid #000;
 }
 
 /* Dropdown menu */
@@ -74,36 +73,32 @@ body {
   position: absolute;
   top: calc(100% + 10px);
   right: 0;
-  width: max-content;
+  min-width: 160px;
   background-color: #fff;
   border: 1px solid #ddd;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
-  min-width: 160px;
-  z-index: 10;
   border-radius: 8px;
+  z-index: 10;
   padding: 0.25rem 0;
   overflow: hidden;
 }
 
-.menu-item {
+.menu a {
   display: block;
   padding: 10px 16px;
   color: #333;
-  text-decoration: none;
-  transition: background-color 0.2s ease;
   font-size: 0.95rem;
-}
-
-.menu-item:hover {
-  background-color: #f0f0f0;
-}
-
-.menu a {
+  text-decoration: none;
   border-bottom: 1px solid #f0f0f0;
+  transition: background-color 0.2s ease;
 }
 
 .menu a:last-child {
   border-bottom: none;
+}
+
+.menu a:hover {
+  background-color: #f0f0f0;
 }
 
 /* Notification dots */
@@ -120,13 +115,13 @@ body {
 
 .menu-dot {
   display: inline-block;
-  position: relative;
-  bottom: 7px;
   margin-left: 8px;
   width: 8px;
   height: 8px;
   background: red;
   border-radius: 50%;
+  position: relative;
+  bottom: 7px;
 }
 
 /* Flash messages */
@@ -145,16 +140,133 @@ body {
   margin-bottom: 0.5rem;
 }
 
-/* Main content block container (optional) */
-.content-container {
-  max-width: 900px;
-  margin: 2rem auto;
-  background-color: #fff;
-  padding: 2rem;
-  border-radius: 12px;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
-}
-
+/* Main content */
 .main-body {
   padding: 0 2rem;
+}
+
+.dashboard-container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+/* Welcome card */
+.welcome-card h2 {
+  margin-bottom: 8px;
+  font-size: 22px;
+  color: #222;
+}
+
+.welcome-card p {
+  font-size: 15px;
+  color: #666;
+}
+
+/* Card headers & tabs */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+}
+
+.card-header h3 {
+  font-size: 20px;
+  color: #333;
+}
+
+.tabs {
+  display: flex;
+  gap: 8px;
+}
+
+.tab-link {
+  padding: 6px 14px;
+  background-color: #eee;
+  border: none;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.tab-link:hover {
+  background-color: #ddd;
+}
+
+.tab-link.active {
+  background-color: #4a90e2;
+  color: #fff;
+}
+
+.tab-content {
+  display: none;
+  margin-top: 10px;
+}
+
+.tab-content.active {
+  display: block;
+}
+
+/* Document list styles */
+.document-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.document-list li {
+  border-bottom: 1px solid #eee;
+}
+
+.document-list li:last-child {
+  border-bottom: none;
+}
+
+.doc-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.doc-name {
+  font-weight: 500;
+  color: #333;
+  text-decoration: none;
+}
+
+.doc-name:hover {
+  text-decoration: underline;
+}
+
+.doc-meta {
+  font-size: 13px;
+  color: #777;
+  margin-top: 4px;
+}
+
+/* View all link */
+.view-all {
+  text-align: right;
+  margin-top: 10px;
+}
+
+.view-all a {
+  font-size: 14px;
+  font-weight: 500;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.view-all a:hover {
+  text-decoration: underline;
 }

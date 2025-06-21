@@ -1,6 +1,48 @@
-{% extends 'main.html' %} <br />
+{% extends 'main.html' %} {% block content %}
+<div class="dashboard-container">
+  <!-- Hello card -->
+  <div class="card welcome-card">
+    <h2>Hello, {{ user.first_name|default:user.username }}</h2>
+    <p>
+      Welcome back. Explore recent documents or navigate using the top menu.
+    </p>
+  </div>
 
-{% block content %} {% if user.is_authenticated %}
-<h2>Hello {{ user.username }}</h2>
-{% endif %} <br />
-{% endblock content %}
+  <!-- Recent documents card -->
+  <div class="card home-card">
+    <div class="card-header">
+      <h3>Recent Documents</h3>
+      <div class="tabs">
+        <button class="tab-link active" data-tab="statements">
+          Statements
+        </button>
+        <button class="tab-link" data-tab="reports">Reports</button>
+        <button class="tab-link" data-tab="memos">Memos</button>
+      </div>
+    </div>
+
+    <div class="tab-content active" id="statements">
+      {% with documents=recent_statements %} <br />
+      {% include "includes/document_list.html" %} <br />
+      {% endwith %}
+      <div class="view-all">
+        <a href="{% url 'statements' %}">View all statements →</a>
+      </div>
+    </div>
+
+    <div class="tab-content" id="reports">
+      {% include "includes/document_list.html" with documents=recent_reports %}
+      <div class="view-all">
+        <a href="#">View all reports →</a>
+      </div>
+    </div>
+
+    <div class="tab-content" id="memos">
+      {% include "includes/document_list.html" with documents=recent_memos %}
+      <div class="view-all">
+        <a href="#">View all memos →</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

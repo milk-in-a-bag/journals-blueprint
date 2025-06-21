@@ -4,6 +4,15 @@ body {
   background-color: #f9f9f9;
 }
 
+.content-container {
+  max-width: 900px;
+  margin: 2rem auto;
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
+}
+
 /* === Heading === */
 h1 {
   font-size: 1.8rem;

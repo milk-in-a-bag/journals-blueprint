@@ -1,0 +1,18 @@
+{% if documents %}
+<ul class="document-list">
+  {% for doc in documents %}
+  <li>
+    <div class="doc-info">
+      <a href="{{ doc.file.url }}" class="doc-name" target="_blank"
+        >{{ doc.name }}</a
+      >
+      <span class="doc-meta"
+        >{{ doc.committee }} — {{ doc.uploaded_at|date:"d M Y" }}</span
+      >
+    </div>
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>No documents found.</p>
+{% endif %}

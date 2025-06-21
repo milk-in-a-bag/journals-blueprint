@@ -1,13 +1,21 @@
 {% extends 'main.html' %} <br />
+
+{% load static %} <br />
+{% block head %}
+<link rel="stylesheet" href="{% static 'styles/view_profile.css' %}" />
+{% endblock %} <br />
+
 {% block content %}
+<div class="profile-view-container">
+  <h2 class="section-title">My Profile</h2>
 
-<h1>View profile template</h1>
-
-<p><strong>Username:</strong> {{ user.username }}</p>
-<p><strong>First Name:</strong> {{ user.first_name }}</p>
-<p><strong>Last Name:</strong> {{ user.last_name }}</p>
-<p><strong>Email:</strong> {{ user.email }}</p>
-<p><strong>Phone Number:</strong> {{ profile.phone_number }}</p>
-<p><strong>Directorate:</strong> {{ profile.directorate.name }}</p>
-
+  <div class="profile-details">
+    <p><span>Username:</span> {{ user.username }}</p>
+    <p><span>First Name:</span> {{ user.first_name }}</p>
+    <p><span>Last Name:</span> {{ user.last_name }}</p>
+    <p><span>Email:</span> {{ user.email }}</p>
+    <p><span>Phone Number:</span> {{ profile.phone_number }}</p>
+    <p><span>Directorate:</span> {{ profile.directorate.name }}</p>
+  </div>
+</div>
 {% endblock %}
