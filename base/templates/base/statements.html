@@ -1,8 +1,8 @@
 {% extends 'main.html' %} <br />
 
-{% block head %}
-<link rel="stylesheet" href="/static/styles/statements.css" />
-<script src="/static/scripts/statements.js" defer></script>
+{% load static %} {% block head %}
+<link rel="stylesheet" href="{% static 'styles/statements.css' %}" />
+<script src="{% static 'scripts/statements.js' %}" defer></script>
 {% endblock %} <br />
 
 {% block content %}
@@ -41,42 +41,54 @@
       {% endfor %}
     </tbody>
   </table>
+</div>
 
-  <div class="modal-overlay" id="modal">
-    <form method="POST" enctype="multipart/form-data" class="newform form">
-      {% csrf_token %}
+<!-- Modals -->
+<div class="modal-overlay" id="modal">
+  <!-- Add Form -->
+  <form method="POST" enctype="multipart/form-data" class="newform form">
+    {% csrf_token %}
+    <img
+      src="{% static 'images/rectangle-xmark-solid.svg' %}"
+      alt=""
+      class="closeBtn"
+    />
+    <h3>New statement</h3>
+    <input type="hidden" name="action" value="add" />
+    <input
+      type="file"
+      id="file"
+      name="file"
+      accept="application/pdf"
+      required
+    />
+    <br />
+    <label for="committee">Committee:</label>
+    <select name="committee" id="committee">
+      {% for committee in committees %}
+      <option value="{{ committee.id }}">{{ committee.shorthand }}</option>
+      {% endfor %}
+    </select>
+    <br />
+    <button type="submit">Upload</button>
+  </form>
 
-      <h5 class="closeBtn">X</h5>
-      <h3>New statement</h3>
-      <input type="hidden" name="action" value="add" />
-      <input
-        type="file"
-        id="file"
-        name="file"
-        accept="application/pdf"
-        required
-      />
-      <br />
-      <label for="committee">Committee:</label>
-      <select name="committee" id="committee">
-        {% for committee in committees %}
-        <option value="{{ committee.id }}">{{ committee.name }}</option>
-        {% endfor %}
-      </select>
-      <br />
-      <button type="submit">Upload</button>
-    </form>
-
-    <form method="POST" class="delform">
-      {% csrf_token %}
-
-      <h3>Delete Statement</h3>
-      <input type="hidden" name="action" value="delete" />
-      <input type="hidden" name="statement_id" id="delete-id" />
-      <p>Confirm you want to delete the statement?</p>
+  <!-- Delete Form -->
+  <form method="POST" class="delform">
+    {% csrf_token %}
+    <img
+      src="{% static 'images/rectangle-xmark-solid.svg' %}"
+      alt=""
+      class="closeBtn"
+    />
+    <h3>Delete Statement</h3>
+    <input type="hidden" name="action" value="delete" />
+    <input type="hidden" name="statement_id" id="delete-id" />
+    <p>Confirm you want to delete the statement?</p>
+    <div class="button-row">
       <button type="submit">Yes</button>
       <button type="button" class="no-btn">No</button>
-    </form>
-  </div>
-  {% endblock content %}
+    </div>
+  </form>
 </div>
+{% endblock %}

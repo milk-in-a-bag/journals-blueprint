@@ -27,3 +27,11 @@
   display: inline-block;
   min-width: 140px;
 }
+
+.icon {
+  width: 120px;
+  height: 120px;
+  display: block;
+  margin: 20px auto;
+  /* Optional: fill: #007bff; */
+}
