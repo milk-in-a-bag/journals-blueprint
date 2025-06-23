@@ -2,6 +2,7 @@ const statementsTable = document.querySelector("#myTable");
 const wrapper = document.querySelector(".profile-wrapper");
 const menu = document.querySelector(".menu");
 
+// Profile menu (desktop-only now)
 if (wrapper && menu) {
   // Toggle menu visibility on profile wrapper click
   wrapper.addEventListener("click", function (event) {
@@ -11,12 +12,16 @@ if (wrapper && menu) {
 
   // Close the menu if clicked outside
   document.addEventListener("click", function (event) {
-    if (!wrapper.contains(event.target)) {
+    // Check if the click is outside profileToggle and profileMenu
+    const isClickInsideProfile =
+      wrapper.contains(event.target) || menu.contains(event.target);
+    if (!isClickInsideProfile) {
       menu.style.display = "none";
     }
   });
 }
 
+// DataTables initialization
 if (statementsTable) {
   new DataTable(statementsTable, {
     paging: true,
@@ -48,6 +53,7 @@ if (statementsTable) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  // Tab functionality
   const tabLinks = document.querySelectorAll(".tab-link");
   const tabContents = document.querySelectorAll(".tab-content");
 
@@ -63,5 +69,32 @@ document.addEventListener("DOMContentLoaded", () => {
         if (content.id === target) content.classList.add("active");
       });
     });
+  });
+
+  // Mobile navigation (hamburger menu)
+  const hamburger = document.querySelector(".hamburger");
+  const navbarLinks = document.querySelector(".navbar-links");
+
+  if (hamburger && navbarLinks) {
+    hamburger.addEventListener("click", () => {
+      navbarLinks.classList.toggle("active"); // Toggle visibility of nav links and profile links
+    });
+  }
+
+  // Close mobile menu if clicked outside hamburger and the menu itself
+  document.addEventListener("click", (e) => {
+    if (hamburger && navbarLinks) {
+      // Ensure elements exist before checking
+      const isClickInsideHamburger = hamburger.contains(e.target);
+      const isClickInsideNavbarLinks = navbarLinks.contains(e.target);
+
+      if (
+        !isClickInsideHamburger &&
+        !isClickInsideNavbarLinks &&
+        navbarLinks.classList.contains("active")
+      ) {
+        navbarLinks.classList.remove("active");
+      }
+    }
   });
 });

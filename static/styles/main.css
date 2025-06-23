@@ -14,7 +14,7 @@ body {
 /* Navbar styles */
 .navbar {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* Pushes left and right content to ends */
   align-items: center;
   background-color: #fff;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.06);
@@ -28,7 +28,7 @@ body {
   text-decoration: none;
   color: #333;
   font-weight: 500;
-  margin: 0 0.5rem;
+  /* Removed margin: 0 0.5rem; from here as navbar-links will handle spacing */
   transition: color 0.3s ease;
 }
 
@@ -36,21 +36,51 @@ body {
   color: #4a90e2;
 }
 
-.navbar .left a {
+.navbar .logo {
+  /* Changed from .navbar .left a to target the specific logo */
   font-size: 1.2rem;
   font-weight: bold;
+  margin: 0; /* Ensure no extra margin */
 }
 
-.right {
+/* New: Navbar-left for logo */
+.navbar-left {
   display: flex;
   align-items: center;
-  gap: 20px;
+}
+
+/* New: Navbar-links for the main navigation items */
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem; /* Space between nav links */
+}
+
+/* Hide My Profile and Logout links on larger screens */
+.navbar-links .nav-link[href*="profile"],
+.navbar-links .nav-link[href*="logout"] {
+  display: none;
+}
+
+/* New: Navbar-icons for items always visible on the right (profile on desktop, hamburger always) */
+.navbar-icons {
+  display: flex;
+  align-items: center;
+  gap: 1rem; /* Space between profile and hamburger */
+}
+
+/* Hamburger icon specific styles */
+.hamburger {
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  display: none; /* Hidden by default on desktop */
 }
 
 /* Profile icon */
 .profile-wrapper {
   position: relative;
-  display: inline-block;
+  /* display: inline-block; -- Removed this as navbar-icons will handle its display */
   cursor: pointer;
 }
 
@@ -269,4 +299,53 @@ body {
 
 .view-all a:hover {
   text-decoration: underline;
+}
+
+/* Media Queries for Responsive Design */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 1rem; /* Adjust padding for smaller screens */
+  }
+
+  /* Hide the profile icon from the main navbar on small screens */
+  .navbar-icons .profile-wrapper {
+    display: none;
+  }
+
+  /* Main navigation links become the mobile menu */
+  .navbar-links {
+    display: none; /* Hidden by default on mobile */
+    flex-direction: column;
+    width: 100%;
+    background-color: #fff;
+    padding: 1rem 0; /* Padding for the dropdown menu items */
+    position: absolute;
+    top: 64px; /* Position below the main navbar (adjust based on actual navbar height) */
+    left: 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 99; /* Ensure it's above other content */
+    align-items: flex-start; /* Align links to the left in column */
+  }
+
+  .navbar-links.active {
+    display: flex; /* Show when active */
+  }
+
+  .navbar-links a {
+    padding: 0.75rem 1rem; /* Padding for each link in mobile menu */
+    width: 100%; /* Make links take full width */
+    text-align: left; /* Ensure text is aligned left in the mobile menu */
+    margin: 0; /* Remove default margins */
+  }
+
+  /* Show My Profile and Logout links when the mobile menu is active */
+  .navbar-links.active .nav-link[href*="profile"],
+  .navbar-links.active .nav-link[href*="logout"] {
+    display: block; /* Override 'display: none' and show them in the vertical menu */
+  }
+
+  /* Hamburger icon becomes visible on mobile */
+  .hamburger {
+    display: block;
+  }
 }

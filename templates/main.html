@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Blueprint</title>
 
-    <!-- Styles -->
     <link rel="stylesheet" href="{% static 'styles/main.css' %}" />
     <link
       rel="stylesheet"
@@ -18,7 +17,6 @@
       rel="stylesheet"
     />
 
-    <!-- Scripts -->
     <script src="{% static 'scripts/jquery-3.7.1.js' %}"></script>
     <script src="{% static 'scripts/main.js' %}" defer></script>
     <script src="https://cdn.datatables.net/2.3.1/js/dataTables.js"></script>
@@ -33,35 +31,56 @@
         <a href="/" class="logo">Blueprint</a>
       </div>
 
-      <div class="navbar-right">
-        <a href="{% url 'committees' %}">Committees</a>
-        <a href="{% url 'statements' %}">Statements</a>
-
+      <div class="navbar-links">
+        <a
+          href="{% url 'committees' %}"
+          class="nav-link {% if request.path == '/committees/' %}active{% endif %}"
+          >Committees</a
+        >
+        <a
+          href="{% url 'statements' %}"
+          class="nav-link {% if request.path == '/statements/' %}active{% endif %}"
+          >Statements</a
+        >
         {% if user.is_superuser %}
-        <a href="{% url 'users' %}">Users</a>
+        <a
+          href="{% url 'users' %}"
+          class="nav-link {% if request.path == '/users/' %}active{% endif %}"
+          >Users</a
+        >
         {% endif %}
 
-        <!-- Profile dropdown -->
+        <a
+          href="{% if incomplete_profile %}{% url 'complete-profile' %}{% else %}{% url 'view-profile' %}{% endif %}"
+          class="nav-link"
+          >My Profile</a
+        >
+        <a href="{% url 'logout' %}" class="nav-link">Logout</a>
+      </div>
+
+      <div class="navbar-icons">
         <div class="profile-wrapper">
-          <div class="profile">
+          <div class="profile" id="profileToggle">
             <span>{{ user.username|first|upper }}</span>
             {% if incomplete_profile %}
             <span class="profile-dot"></span>
             {% endif %}
           </div>
-
-          <div class="menu">
+          <div class="menu" id="profileMenu">
             {% if incomplete_profile %}
-            <a href="{% url 'complete-profile' %}" class="menu-item">
-              Complete Profile
-              <span class="menu-dot"></span>
-            </a>
+            <a href="{% url 'complete-profile' %}">Complete Profile</a>
             {% else %}
-            <a href="{% url 'view-profile' %}" class="menu-item">My Profile</a>
+            <a href="{% url 'view-profile' %}">My Profile</a>
             {% endif %}
-            <a href="{% url 'logout' %}" class="menu-item">Logout</a>
+            <a href="{% url 'logout' %}">Logout</a>
           </div>
         </div>
+
+        <img
+          src="{% static 'images/bars-solid.svg' %}"
+          alt="menu"
+          class="hamburger"
+        />
       </div>
     </nav>
     {% endif %} {% if messages %}
