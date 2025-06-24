@@ -28,7 +28,6 @@ body {
   text-decoration: none;
   color: #333;
   font-weight: 500;
-  /* Removed margin: 0 0.5rem; from here as navbar-links will handle spacing */
   transition: color 0.3s ease;
 }
 
@@ -37,32 +36,28 @@ body {
 }
 
 .navbar .logo {
-  /* Changed from .navbar .left a to target the specific logo */
   font-size: 1.2rem;
   font-weight: bold;
-  margin: 0; /* Ensure no extra margin */
+  margin: 0;
 }
 
-/* New: Navbar-left for logo */
 .navbar-left {
   display: flex;
   align-items: center;
 }
 
-/* New: Navbar-links for the main navigation items */
 .navbar-links {
   display: flex;
   align-items: center;
-  gap: 1.5rem; /* Space between nav links */
+  gap: 1.5rem; /* Space between nav links on desktop */
 }
 
-/* Hide My Profile and Logout links on larger screens */
+/* Hide My Profile and Logout links on larger screens (desktop) */
 .navbar-links .nav-link[href*="profile"],
 .navbar-links .nav-link[href*="logout"] {
   display: none;
 }
 
-/* New: Navbar-icons for items always visible on the right (profile on desktop, hamburger always) */
 .navbar-icons {
   display: flex;
   align-items: center;
@@ -80,7 +75,6 @@ body {
 /* Profile icon */
 .profile-wrapper {
   position: relative;
-  /* display: inline-block; -- Removed this as navbar-icons will handle its display */
   cursor: pointer;
 }
 
@@ -322,7 +316,7 @@ body {
     flex-direction: column;
     width: 100%;
     background-color: #fff;
-    padding: 1rem 0; /* Padding for the dropdown menu items */
+    padding: 0.5rem 0; /* Adjusted padding for the dropdown menu items - REDUCED VERTICAL PADDING */
     position: absolute;
     top: 64px; /* Position below the main navbar (adjust based on actual navbar height) */
     left: 0;
@@ -336,10 +330,10 @@ body {
   }
 
   .navbar-links a {
-    padding: 0.75rem 1rem; /* Padding for each link in mobile menu */
+    padding: 0.5rem 1rem; /* Adjusted padding for each link in mobile menu - REDUCED VERTICAL PADDING */
     width: 100%; /* Make links take full width */
     text-align: left; /* Ensure text is aligned left in the mobile menu */
-    margin: 0; /* Remove default margins */
+    margin: 0; /* Remove default margins to control spacing purely with padding */
   }
 
   /* Show My Profile and Logout links when the mobile menu is active */
