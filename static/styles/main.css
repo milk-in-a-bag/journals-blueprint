@@ -206,7 +206,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
+  flex-wrap: wrap; /* Added flex-wrap to allow elements to wrap */
   margin-bottom: 15px;
 }
 
@@ -218,6 +218,9 @@ body {
 .tabs {
   display: flex;
   gap: 8px;
+  flex-wrap: wrap; /* This is the key change to make the tabs wrap */
+  justify-content: flex-start; /* Align tabs to the start when they wrap */
+  margin-top: 10px; /* Add some space if they wrap below the header */
 }
 
 .tab-link {
@@ -228,6 +231,7 @@ body {
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
+  white-space: nowrap; /* Prevent text from wrapping inside the button */
 }
 
 .tab-link:hover {
@@ -347,5 +351,21 @@ body {
   /* Hamburger icon becomes visible on mobile */
   .hamburger {
     display: block;
+  }
+
+  /* Adjustments for card header on small screens */
+  .card-header {
+    flex-direction: column; /* Stack elements vertically */
+    align-items: flex-start; /* Align items to the left */
+  }
+
+  .card-header h3 {
+    margin-bottom: 10px; /* Add space below the heading */
+  }
+
+  .tabs {
+    width: 100%; /* Make tabs take full width to allow wrapping */
+    justify-content: flex-start; /* Align tabs to the start if they wrap */
+    gap: 8px; /* Maintain gap between wrapped items */
   }
 }

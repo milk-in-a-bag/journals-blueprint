@@ -1,11 +1,11 @@
-{% extends 'main.html' %} <br />
-
-{% load static %} {% block head %}
+{% extends 'main.html' %} {% load static %} {% block head %}
 <link rel="stylesheet" href="{% static 'styles/statements.css' %}" />
+<link
+  rel="stylesheet"
+  href="https://cdn.datatables.net/responsive/2.5.0/css/responsive.dataTables.min.css"
+/>
 <script src="{% static 'scripts/statements.js' %}" defer></script>
-{% endblock %} <br />
-
-{% block content %}
+{% endblock %} {% block content %}
 <div class="content-container">
   <h3>Statements template</h3>
 
@@ -43,9 +43,7 @@
   </table>
 </div>
 
-<!-- Modals -->
 <div class="modal-overlay" id="modal">
-  <!-- Add Form -->
   <form method="POST" enctype="multipart/form-data" class="newform form">
     {% csrf_token %}
     <img
@@ -73,7 +71,6 @@
     <button type="submit">Upload</button>
   </form>
 
-  <!-- Delete Form -->
   <form method="POST" class="delform">
     {% csrf_token %}
     <img

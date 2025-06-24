@@ -11,6 +11,7 @@ body {
   padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
+  overflow-x: auto; /* Add this to allow horizontal scrolling if table content overflows */
 }
 
 /* === Heading === */
@@ -18,6 +19,7 @@ h3 {
   font-size: 1.8rem;
   color: #2c3e50;
   margin-bottom: 1.5rem;
+  /* Removed text-align: left; if it was explicitly here. Default is usually left. */
 }
 
 /* === Add New Button === */
@@ -38,11 +40,70 @@ button.new:hover {
 
 /* === DataTable === */
 #myTable {
-  width: 100%;
+  width: 100%; /* Ensure table takes full width of its container */
   border-collapse: collapse;
   background: #fff;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.04);
   font-size: 0.95rem;
+}
+
+/* DataTables default styling adjustments */
+/* Target DataTables wrapper elements for better spacing on mobile */
+.dataTables_wrapper .dataTables_length,
+.dataTables_wrapper .dataTables_filter,
+.dataTables_wrapper .dataTables_info,
+.dataTables_wrapper .dataTables_paginate {
+  padding: 10px 0; /* Add some vertical padding */
+}
+
+.dataTables_wrapper .dataTables_filter input {
+  width: 100%; /* Make search input take full width on smaller screens */
+  box-sizing: border-box; /* Include padding and border in the element's total width */
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+/* Center pagination on smaller screens */
+.dataTables_wrapper .dataTables_paginate {
+  text-align: center;
+}
+
+/* Ensure the table itself can scroll if needed by DataTables Responsive */
+#myTable.dataTable.dtr-inline.collapsed > tbody > tr > td:first-child,
+#myTable.dataTable.dtr-inline.collapsed > tbody > tr > th:first-child {
+  position: relative;
+  padding-left: 30px; /* Make space for the + icon */
+}
+
+#myTable.dataTable.dtr-inline.collapsed > tbody > tr > td:first-child:before,
+#myTable.dataTable.dtr-inline.collapsed > tbody > tr > th:first-child:before {
+  top: 10px;
+  left: 5px;
+  height: 14px;
+  width: 14px;
+  display: block;
+  position: absolute;
+  color: white;
+  border: 1px solid white;
+  border-radius: 14px;
+  text-align: center;
+  line-height: 14px;
+  box-sizing: content-box;
+  content: "+";
+  background-color: #31b131;
+}
+
+#myTable.dataTable.dtr-inline.collapsed
+  > tbody
+  > tr.parent
+  > td:first-child:before,
+#myTable.dataTable.dtr-inline.collapsed
+  > tbody
+  > tr.parent
+  > th:first-child:before {
+  content: "-";
+  background-color: #d33333;
 }
 
 #myTable thead {
@@ -200,4 +261,50 @@ button.new:hover {
 
 .button-row button {
   flex: 1;
+}
+
+/* Responsive adjustments for DataTables controls and overall content */
+@media (max-width: 768px) {
+  .content-container {
+    padding: 1rem; /* Reduce padding on smaller screens */
+    margin: 1rem auto; /* Adjust margin */
+    text-align: center; /* Center content within the container */
+  }
+
+  .content-container h3 {
+    text-align: center; /* Center the heading on small screens */
+  }
+
+  button.new {
+    margin-left: auto; /* Center the add new button if it's the only block element */
+    margin-right: auto;
+    display: block; /* Ensure it's a block element to apply auto margins */
+  }
+
+  /* DataTables controls layout */
+  .dataTables_wrapper .dataTables_length,
+  .dataTables_wrapper .dataTables_filter {
+    display: block; /* Make them stack vertically */
+    width: 100%; /* Take full width */
+    text-align: center; /* Center the "Show entries" and "Search" labels/inputs */
+    margin-bottom: 10px; /* Add space between them */
+  }
+
+  .dataTables_wrapper .dataTables_length label, /* Target the label directly for length */
+    .dataTables_wrapper .dataTables_filter label {
+    display: block; /* Make label stack above input */
+    margin-bottom: 5px;
+    text-align: center; /* Center the labels */
+  }
+
+  .dataTables_wrapper .dataTables_filter input {
+    width: 80%; /* Adjusted width for search input to prevent overflow and maintain spacing */
+    margin: 0 auto; /* Center the search input */
+  }
+
+  .dataTables_wrapper .dataTables_info,
+  .dataTables_wrapper .dataTables_paginate {
+    text-align: center; /* Keep pagination and info centered */
+    clear: both; /* Clear floats from length/filter */
+  }
 }
