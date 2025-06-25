@@ -88,14 +88,17 @@
         />
       </div>
     </nav>
-    {% endif %} {% if messages %}
-    <ul class="messages">
-      {% for message in messages %}
-      <li>{{ message }}</li>
-      {% endfor %}
-    </ul>
-    {% endif %}
+    {% endif %} 
+    
 
     <main class="main-body">{% block content %}{% endblock %}</main>
+
+    {% if messages %}
+    <script>
+      {% for message in messages %}
+        alert("{{ message|escapejs }}");
+      {% endfor %}
+    </script>
+    {% endif %}
   </body>
 </html>
