@@ -9,9 +9,11 @@
 body {
   background-color: #f5f7fa;
   color: #333;
+  scroll-behavior: smooth;
 }
 
 /* Navbar styles */
+
 .navbar {
   display: flex;
   justify-content: space-between; /* Pushes left and right content to ends */
@@ -138,14 +140,14 @@ body {
 }
 
 .menu-dot {
-  display: inline-block;
-  margin-left: 8px;
-  width: 8px;
-  height: 8px;
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  width: 10px;
+  height: 10px;
   background: red;
   border-radius: 50%;
-  position: relative;
-  bottom: 7px;
+  border: 2px solid white;
 }
 
 /* Flash messages */
@@ -166,7 +168,7 @@ body {
 
 /* Main content */
 .main-body {
-  padding: 0 2rem;
+  padding: 2rem;
 }
 
 .dashboard-container {
@@ -184,6 +186,7 @@ body {
 }
 
 /* Welcome card */
+
 .welcome-card h2 {
   margin-bottom: 8px;
   font-size: 22px;
@@ -201,7 +204,7 @@ body {
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap; /* Added flex-wrap to allow elements to wrap */
-  margin-bottom: 15px;
+  margin-bottom: 10px;
 }
 
 .card-header h3 {
@@ -255,6 +258,7 @@ body {
 
 .document-list li {
   border-bottom: 1px solid #eee;
+  padding: 8px 0;
 }
 
 .document-list li:last-child {

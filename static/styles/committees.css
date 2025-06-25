@@ -1,7 +1,7 @@
 /* Committees page layout */
 .committees-container {
   max-width: 1000px;
-  margin: 2rem auto;
+  margin: auto;
   padding: 1rem 2rem;
   display: flex;
   flex-direction: column;

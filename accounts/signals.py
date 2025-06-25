@@ -12,3 +12,4 @@ def create_profile(sender, instance, created, **kwargs):
 def update_user(sender, instance, created, **kwargs):
     if not created:
         instance.user.save()
+ 

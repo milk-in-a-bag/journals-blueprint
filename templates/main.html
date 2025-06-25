@@ -54,11 +54,10 @@
           href="{% if incomplete_profile %}{% url 'complete-profile' %}{% else %}{% url 'view-profile' %}{% endif %}"
           class="nav-link"
         >
-          {% if incomplete_profile %} <br />
-          Complete Profile <br />
-          {% else %} <br />
-          My Profile <br />
-          {% endif %}
+          {% if incomplete_profile %} Complete Profile<span
+            class="menu-dot"
+          ></span>
+          {% else %} My Profile {% endif %}
         </a>
         <a href="{% url 'logout' %}" class="nav-link">Logout</a>
       </div>
@@ -74,6 +73,7 @@
           <div class="menu" id="profileMenu">
             {% if incomplete_profile %}
             <a href="{% url 'complete-profile' %}">Complete Profile</a>
+            <span class="menu-dot"></span>
             {% else %}
             <a href="{% url 'view-profile' %}">My Profile</a>
             {% endif %}

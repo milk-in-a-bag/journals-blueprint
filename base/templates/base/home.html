@@ -24,8 +24,8 @@
     </div>
 
     <div class="tab-content active" id="statements">
-      {% with documents=recent_statements %} <br />
-      {% include "includes/document_list.html" %} <br />
+      {% with documents=recent_statements %} 
+      {% include "includes/document_list.html" %} 
       {% endwith %}
       <div class="view-all">
         <a href="{% url 'statements' %}">View all statements →</a>
